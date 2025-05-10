@@ -104,7 +104,7 @@ const Requests = () => {
                             </div>
                         </div>
 
-                        // Toast message
+                        {/* Toast message */}
                         {showToast && (
                             <div className="toast toast-top toast-center">
                                 <div className="alert alert-success">

@@ -12,8 +12,6 @@ const Navbar = () => {
                 <Link to="/" className="btn btn-ghost text-xl">💻 Dev Connect</Link>
             </div>
 
-
-
             {user && <div className="flex gap-2">
                 <div className="form-control">Welcome, {user.firstName}</div>
                 <div className="dropdown dropdown-end mx-5 flex z-10">
