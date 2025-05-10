@@ -1,11 +1,8 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -25,11 +22,7 @@ const Navbar = () => {
             console.log(error)
         }
     }
-    useEffect(()=>{
-        navigate("/login");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[user]) 
-
+    
     return (
         <div className="navbar bg-base-300 fixed top-0 w-full shadow flex items-center px-4 ">
             <div className="flex-1">
