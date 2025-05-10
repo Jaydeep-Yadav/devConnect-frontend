@@ -1,34 +1,15 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
-import { removeUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+// import { useEffect } from "react";
+// import axios from "axios";
+// import { addUser } from "../utils/userSlice";
 
 
 const Navbar = () => {
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     // subscribe to user slice from store
     const user = useSelector((state) => state.user);
-
-    const handleLogout = async () => {
-        try {
-            await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
-            dispatch(removeUser())
-            return navigate("/login");
-        } catch (error) {
-            // Error logic maybe redirect to error page
-            console.log(error)
-        }
-    }
-    useEffect(()=>{
-        navigate("/login");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[user]) 
+    
 
     return (
         <div className="navbar bg-base-300 fixed top-0 w-full shadow flex items-center px-4 ">
@@ -36,9 +17,11 @@ const Navbar = () => {
                 <Link to="/" className="btn btn-ghost text-xl">💻 Dev Connect</Link>
             </div>
 
+
+
             {user && <div className="flex gap-2">
                 <div className="form-control">Welcome, {user.firstName}</div>
-                <div className="dropdown dropdown-end mx-5 flex">
+                <div className="dropdown dropdown-end mx-5 flex z-10">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img
@@ -48,16 +31,11 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
-                            <Link to="/profile" className="justify-between">
-                                Profile
-                                {/* <span className="badge">New</span> */}
-                            </Link>
-                        </li>
-                        <li><Link to="/connections">Connections</Link></li>
-                        <li><Link to="/requests">Requests</Link></li>
-                        <li> <a onClick={handleLogout}>Logout</a></li>
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
+                        <li> <Link to="/profile"> Profile </Link> </li>
+                        <li> <Link to="/connections"> Connections </Link> </li>
+                        <li> <Link to="/requests"> Requests </Link> </li>
+                        <li> <Link to="/logout"> Logout </Link> </li>
                     </ul>
                 </div>
             </div>}

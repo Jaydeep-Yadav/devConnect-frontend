@@ -3,13 +3,9 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../utils/constants"
-
-
+import { BASE_URL } from "../utils/constants.js"
 
 const Login = () => {
-
-
 
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
@@ -25,23 +21,26 @@ const Login = () => {
   const [gender, setGender] = useState("male");
   const [isLoginForm, setIsLoginForm] = useState(true);
 
+
   const handleLogin = async () => {
     try {
-      const res = await axios.post(BASE_URL + "/login", {
-        emailId,
-        password
-      }, {
-        withCredentials: true
-      })
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
 
-      dispatch(addUser(res.data));  // add response to store
+      dispatch(addUser(res.data));
 
-      return navigate("/");
+      return navigate("/feed");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
+      console.log(err);
     }
-
-  }
+  };
 
   const handleSignUp = async () => {
     try {

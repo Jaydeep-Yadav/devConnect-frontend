@@ -66,6 +66,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </label>
+                
                 <label className="form-control w-full max-w-xs my-2">
                   <label className="form-control w-full max-w-xs my-2">
                     <div className="label">
@@ -78,6 +79,7 @@ const EditProfile = ({ user }) => {
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </label>
+
                   <div className="label">
                     <span className="label-text">Photo URL :</span>
                   </div>
@@ -88,6 +90,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => setPhotoUrl(e.target.value)}
                   />
                 </label>
+
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
                     <span className="label-text">Age:</span>
@@ -99,29 +102,20 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => setAge(e.target.value)}
                   />
                 </label>
-                {/* <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Gender:</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={gender}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setGender(e.target.value)}
-                  />
-                </label> */}
+
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
                     <span className="label-text">Gender:</span>
                   </div>
 
                   <select className="select" value={gender} onChange={(e) => setGender(e.target.value)}>
-                    <option disabled selected value="selectgender"> -- select a gender -- </option>
+                    <option disabled defaultValue="selectgender" value="selectgender"> -- select a gender -- </option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                   </select>
                 </label>
+
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
                     <span className="label-text">About:</span>
@@ -133,6 +127,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => setAbout(e.target.value)}
                   />
                 </label>
+
               </div>
               <p className="text-red-500">{error}</p>
               <div className="card-actions justify-center m-2">

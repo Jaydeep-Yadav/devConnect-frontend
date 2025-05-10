@@ -10,24 +10,30 @@ import { addUser } from "../utils/userSlice.js"
 const Body = () => {
 
     const dispatch = useDispatch();
-    const userData = useSelector((store) => store.user);
     const navigate = useNavigate();
 
-    const fetchUserData = async () => {
+    const userData = useSelector((store) => store.user);
+
+    const fetchUser = async () => {
         try {
-            if (userData) return;
-            const res = await axios.get(BASE_URL + "/profile/view", { withCredentials: true });
-            dispatch(addUser(res.data));
+            if(userData) return;
+
+            const user = await axios.get(BASE_URL + "/profile/view", {
+                withCredentials: true,
+            });
+
+            dispatch(addUser(user.data));
         } catch (err) {
+
             if (err.status === 401) {
-                navigate("/login");
+                navigate("/");
             }
-            console.log(err)
+            console.error(err);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchUserData();
+            fetchUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -35,7 +41,6 @@ const Body = () => {
         <>
             <Navbar />
 
-            {/* Components of children routes are rendered here */}
             <div className="pt-13">
                 <Outlet />
             </div>
@@ -45,4 +50,4 @@ const Body = () => {
     )
 }
 
-export default Body
+export default Body;
