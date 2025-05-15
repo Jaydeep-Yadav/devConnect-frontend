@@ -7,9 +7,9 @@ const Navbar = () => {
     const user = useSelector((state) => state.user);
 
     return (
-        <div className="navbar bg-base-300 fixed top-0 w-full shadow flex items-center px-4 ">
+        <div className="navbar bg-base-300 fixed top-0 w-full shadow flex items-center px-4 h-[64px] z-10">
             <div className="flex-1">
-                <Link to="/" className="btn btn-ghost text-xl">💻 Dev Connect</Link>
+                <Link to={user? "/feed": "/"} className="btn btn-ghost text-xl">💻 Dev Connect</Link>
             </div>
 
             {user && <div className="flex gap-2">
@@ -26,7 +26,7 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
                         <li> <Link to="/profile"> Profile </Link> </li>
-                        <li> <Link to="/connections"> Connections </Link> </li>
+                        <li> <Link to="/connections">Chat </Link> </li>
                         <li> <Link to="/requests"> Requests </Link> </li>
                         <li> <Link to="/logout"> Logout </Link> </li>
                     </ul>

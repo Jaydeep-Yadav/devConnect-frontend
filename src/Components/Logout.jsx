@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Logout = () => {
     const dispatch = useDispatch();
@@ -10,11 +11,14 @@ const Logout = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${BASE_URL}/logout`, {}, { withCredentials: true });
+           const res = await axios.post(`${BASE_URL}/logout`, {}, { withCredentials: true });
             dispatch(removeUser());
+            toast.success(res.data.message)
             return navigate("/")
+             
         } catch (error) {
             console.error("Logout error:", error);
+           
             // Error logic maybe redirect to error page
         }
     };
